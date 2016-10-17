@@ -3,6 +3,7 @@
 # whether or not to overwrite the application config upon startup
 overwrite_config = false
 oberwrite_keys = false
+version = 1
 
 [pems]
 key = ""
@@ -11,6 +12,7 @@ https_key = ""
 https_cert = ""
 
 [[folders]]
+device_ids = []
 id = "somefolderid"
 path = "test"
 label = "Default Folder"
@@ -32,8 +34,9 @@ enabled = true
 tls = false
 address = "127.0.0.1:8384"
 apikey = ""
-listen_address = "default"
 theme = "default"
+user = ""
+password = ""
 
 
 [options]

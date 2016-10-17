@@ -1,9 +1,64 @@
 #!/bin/sh
 #
 
+echo "Running"
+
 export SYNCTHING_APP_HOME="{{pkg.path}}"
 export SYNCTHING_APP_DATA="{{pkg.svc_data_path}}"
 export SYNCTHING_APP_VAR="{{pkg.svc_var_path}}"
+
+echo "Copying config files"
+pushd {{pkg.svc_config_path}}
+
+# todo: implement migration version numbers which are written to a file
+# and checked against cfg.migrate.version to see whether or not
+# a config overwrite should be applied. (avoids overwriting when there hasn't
+# been a new config sent through)
+
+{{#if cfg.migrate.overwrite_config}}
+echo "Overwriting config"
+cp -v config.xml ${SYNCTHING_APP_DATA}
+{{else}}
+echo "Not overwriting config if it already exists"
+cp -v -n config.xml ${SYNCTHING_APP_DATA}
+{{/if}}
+
+echo "Config Status:"
+cat ${SYNCTHING_APP_DATA}/config.xml
+echo ""
+
+pushd ${SYNCTHING_APP_DATA}
+{{#if cfg.migrate.overwrite_keys}}
+{{#if cfg.pems.key}}
+echo "Writing key.pem"
+echo "{{cfg.pems.key}}" > key.pem
+cat key.epm
+echo ""
+{{/if}}
+
+{{#if cfg.pems.cert}}
+echo "Writing cert.pem"
+echo "{{cfg.pems.cert}}" > cert.pem
+cat cert.pem
+echo ""
+{{/if}}
+
+{{#if cfg.pems.https_key}}
+echo "Writing https-key.pem"
+echo "{{cfg.pems.https_key}}" > https-key.pem
+cat https-key.pem
+echo ""
+{{/if}}
+
+{{#if cfg.pems.https_cert}}
+echo "Writing https-cert.pem"
+echo "{{cfg.pems.https_cert}}" > https-cert.pem
+cat https-cert.pem
+echo ""
+{{/if}}
+{{/if}}
+popd
+popd
 
 cd ${SYNCTHING_APP_HOME}
 

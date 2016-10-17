@@ -8,6 +8,10 @@
             ignorePerms="{{ignore_perms}}" 
             autoNormalize="{{auto_normalize}}">
         {{#if ../cfg.device.id}}<device id="{{../cfg.device.id}}"></device>{{/if}}
+        {{#each device_ids}}
+        <device id="{{this}}"></device>
+        {{/each}}
+        
         <minDiskFreePct>1</minDiskFreePct>
         <versioning></versioning>
         <copiers>0</copiers>
@@ -32,11 +36,17 @@
         <address>{{address}}</address>
     </device>
     {{/each}}
-    
+
     <gui enabled="{{cfg.gui.enabled}}" tls="{{cfg.gui.tls}}">
         <address>{{cfg.gui.address}}</address>
         {{#if cfg.gui.apikey}}<apikey>{{cfg.gui.apikey}}</apikey>{{/if}}
         <theme>{{cfg.gui.theme}}</theme>
+        {{#if cfg.gui.user}}
+        <user>{{cfg.gui.user}}</user>
+        {{/if}}
+        {{#if cfg.gui.password}}
+        <password>{{cfg.gui.password}}</password>
+        {{/if}}
     </gui>
     <options>
         <listenAddress>{{cfg.options.listen_address}}</listenAddress>
