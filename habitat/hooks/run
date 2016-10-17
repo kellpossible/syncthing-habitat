@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+
+export SYNCTHING_APP_HOME="{{pkg.path}}"
+export SYNCTHING_APP_DATA="{{pkg.svc_data_path}}"
+export SYNCTHING_APP_VAR="{{pkg.svc_var_path}}"
+
+cd ${SYNCTHING_APP_HOME}
+
+exec syncthing -home=${SYNCTHING_APP_DATA}
+# export PATH="$PATH:${FLASK_APPLICATION_DATA}"
+# export LD_LIBRARY_PATH="$(hab pkg path core/gcc-libs)/lib"
+# export DATABASE_URL="sqlite:///${FLASK_APPLICATION_DATA}/data.db"
+# export PYTHONPATH="$PYTHONPATH:${FLASK_APPLICATION_HOME}/pip/"
+
+# export PORT={{cfg.port}}
+# export APP_SETTINGS={{cfg.config_class}}
+
+# cd ${FLASK_APPLICATION_VAR}
+
+# echo "Starting main.py with the following settings"
+# echo "PORT: ${PORT}"
+# echo "DATABASE_URL: ${DATABASE_URL}"
+# echo "APP_SETTINGS: ${APP_SETTINGS}"
+# echo "PYTHONPATH: ${PYTHONPATH}"
+# echo "from path: ${FLASK_APPLICATION_VAR}"
+
+# exec python main.py 2>&1

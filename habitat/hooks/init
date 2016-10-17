@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+
+export SYNCTHING_APP_HOME="{{pkg.path}}"
+export SYNCTHING_APP_DATA="{{pkg.svc_data_path}}"
+export SYNCTHING_APP_VAR="{{pkg.svc_var_path}}"
+
+echo "Copying config files"
+pushd {{pkg.svc_config_path}}
+cp -v config.xml ${SYNCTHING_APP_DATA}
+popd
+
+echo "Linking executables from ${SYNCTHING_APP_HOME} to ${SYNCTHING_APP_VAR}"
+ln -sf ${SYNCTHING_APP_HOME}/syncthing ${SYNCTHING_APP_VAR}
+
+chown -R hab:hab ${SYNCTHING_APP_DATA}

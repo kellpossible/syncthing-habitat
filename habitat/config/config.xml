@@ -1,0 +1,44 @@
+<configuration version="14">
+    <device {{#if cfg.device_id}}id="{{cfg.device_id}}"{{/if}} name="{{cfg.device_name}}" compression="metadata" introducer="{{cfg.device_introducer}}">
+        <address>{{cfg.device_address}}</address>
+    </device>
+    <gui enabled="true" tls="false">
+        <address>{{cfg.gui_address}}</address>
+        <apikey>{{cfg.gui_apikey}}</apikey>
+        <theme>default</theme>
+    </gui>
+    <options>
+        <listenAddress>default</listenAddress>
+        <globalAnnounceServer>default</globalAnnounceServer>
+        <globalAnnounceEnabled>true</globalAnnounceEnabled>
+        <localAnnounceEnabled>true</localAnnounceEnabled>
+        <localAnnouncePort>21027</localAnnouncePort>
+        <localAnnounceMCAddr>[ff12::8384]:21027</localAnnounceMCAddr>
+        <maxSendKbps>0</maxSendKbps>
+        <maxRecvKbps>0</maxRecvKbps>
+        <reconnectionIntervalS>60</reconnectionIntervalS>
+        <relaysEnabled>true</relaysEnabled>
+        <relayReconnectIntervalM>10</relayReconnectIntervalM>
+        <startBrowser>true</startBrowser>
+        <natEnabled>true</natEnabled>
+        <natLeaseMinutes>60</natLeaseMinutes>
+        <natRenewalMinutes>30</natRenewalMinutes>
+        <natTimeoutSeconds>10</natTimeoutSeconds>
+        <urAccepted>0</urAccepted>
+        <urUniqueID></urUniqueID>
+        <urURL>https://data.syncthing.net/newdata</urURL>
+        <urPostInsecurely>false</urPostInsecurely>
+        <urInitialDelayS>1800</urInitialDelayS>
+        <restartOnWakeup>true</restartOnWakeup>
+        <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
+        <keepTemporariesH>24</keepTemporariesH>
+        <cacheIgnoredFiles>false</cacheIgnoredFiles>
+        <progressUpdateIntervalS>5</progressUpdateIntervalS>
+        <symlinksEnabled>true</symlinksEnabled>
+        <limitBandwidthInLan>false</limitBandwidthInLan>
+        <minHomeDiskFreePct>1</minHomeDiskFreePct>
+        <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
+        <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
+        <tempIndexMinBlocks>10</tempIndexMinBlocks>
+    </options>
+</configuration>

@@ -1,0 +1,14 @@
+
+device_id = ""
+
+device_name = "syncthing"
+
+device_address = "dynamic"
+
+device_introducer = false
+
+gui_address = "127.0.0.1:8384"
+
+gui_apikey = ""
+
+listen_address = "default"
