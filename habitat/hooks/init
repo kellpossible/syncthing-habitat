@@ -7,6 +7,7 @@ export SYNCTHING_APP_VAR="{{pkg.svc_var_path}}"
 
 echo "Copying config files"
 pushd {{pkg.svc_config_path}}
+cat config.xml
 cp -v config.xml ${SYNCTHING_APP_DATA}
 popd
 

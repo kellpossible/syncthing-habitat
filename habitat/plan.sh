@@ -24,10 +24,10 @@ pkg_expose=(
 )
 
 # temporary override to avoid having to download every time!
-do_download() {
-	cp $PLAN_CONTEXT/../${SYNCTHING_DOWNLOAD_FILE} $HAB_CACHE_SRC_PATH/
-	return 0
-}
+# do_download() {
+# 	cp $PLAN_CONTEXT/../${SYNCTHING_DOWNLOAD_FILE} $HAB_CACHE_SRC_PATH/
+# 	return 0
+# }
 
 do_verify() {
 	pushd $HAB_CACHE_SRC_PATH

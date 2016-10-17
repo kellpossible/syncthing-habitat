@@ -1,14 +1,38 @@
 <configuration version="14">
-    <device {{#if cfg.device_id}}id="{{cfg.device_id}}"{{/if}} name="{{cfg.device_name}}" compression="metadata" introducer="{{cfg.device_introducer}}">
-        <address>{{cfg.device_address}}</address>
+    {{#each cfg.folders}}
+    <folder id="{{id}}" 
+    label="{{label}}" 
+    path="{{../pkg.svc_data_path}}/{{path}}" 
+    type="{{type}}" 
+    rescanIntervalS="{{rescan_intervals}}" 
+    ignorePerms="{{ignore_perms}}" 
+    autoNormalize="{{auto_normalize}}">
+        {{#if ../cfg.device.id}}<device id="{{../cfg.device.id}}"></device>{{/if}}
+        <minDiskFreePct>1</minDiskFreePct>
+        <versioning></versioning>
+        <copiers>0</copiers>
+        <pullers>0</pullers>
+        <hashers>0</hashers>
+        <order>random</order>
+        <ignoreDelete>false</ignoreDelete>
+        <scanProgressIntervalS>0</scanProgressIntervalS>
+        <pullerSleepS>0</pullerSleepS>
+        <pullerPauseS>0</pullerPauseS>
+        <maxConflicts>-1</maxConflicts>
+        <disableSparseFiles>false</disableSparseFiles>
+        <disableTempIndexes>false</disableTempIndexes>
+    </folder>
+    {{/each}}
+    <device {{#if cfg.device.id}}id="{{cfg.device.id}}"{{/if}} name="{{cfg.device.name}}" compression="{{cfg.device.compression}}" introducer="{{cfg.device.introducer}}">
+        <address>{{cfg.device.address}}</address>
     </device>
-    <gui enabled="true" tls="false">
-        <address>{{cfg.gui_address}}</address>
-        <apikey>{{cfg.gui_apikey}}</apikey>
-        <theme>default</theme>
+    <gui enabled="{{cfg.gui.enabled}}" tls="{{cfg.gui.tls}}">
+        <address>{{cfg.gui.address}}</address>
+        {{#if cfg.gui.apikey}}<apikey>{{cfg.gui.apikey}}</apikey>{{/if}}
+        <theme>{{cfg.gui.theme}}</theme>
     </gui>
     <options>
-        <listenAddress>default</listenAddress>
+        <listenAddress>{{cfg.options.listen_address}}</listenAddress>
         <globalAnnounceServer>default</globalAnnounceServer>
         <globalAnnounceEnabled>true</globalAnnounceEnabled>
         <localAnnounceEnabled>true</localAnnounceEnabled>
@@ -19,7 +43,7 @@
         <reconnectionIntervalS>60</reconnectionIntervalS>
         <relaysEnabled>true</relaysEnabled>
         <relayReconnectIntervalM>10</relayReconnectIntervalM>
-        <startBrowser>true</startBrowser>
+        <startBrowser>{{cfg.options.start_browser}}</startBrowser>
         <natEnabled>true</natEnabled>
         <natLeaseMinutes>60</natLeaseMinutes>
         <natRenewalMinutes>30</natRenewalMinutes>

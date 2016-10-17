@@ -1,14 +1,32 @@
+# see here https://docs.syncthing.net/users/config.html for explanation of values
 
-device_id = ""
+[[folders]]
+id = "somefolderid"
+path = "test"
+label = "Default Folder"
+type = "readwrite"
+rescan_intervals = 60
+ignore_perms = false
+auto_normalize = true
 
-device_name = "syncthing"
 
-device_address = "dynamic"
+[device]
+# id of device - leave empty to auto generate
+id = ""
+name = "syncthing"
+address = "dynamic"
+introducer = false
+compression = "metadata"
 
-device_introducer = false
-
-gui_address = "127.0.0.1:8384"
-
-gui_apikey = ""
-
+[gui]
+enabled = true
+tls = false
+address = "127.0.0.1:8384"
+apikey = ""
 listen_address = "default"
+theme = "default"
+
+
+[options]
+listen_address = "default"
+start_browser = false
