@@ -1,4 +1,14 @@
 # see here https://docs.syncthing.net/users/config.html for explanation of values
+[migrate]
+# whether or not to overwrite the application config upon startup
+overwrite_config = false
+oberwrite_keys = false
+
+[pems]
+key = ""
+cert = ""
+https_key = ""
+https_cert = ""
 
 [[folders]]
 id = "somefolderid"
@@ -10,13 +20,12 @@ ignore_perms = false
 auto_normalize = true
 
 
-[device]
-# id of device - leave empty to auto generate
-id = ""
-name = "syncthing"
-address = "dynamic"
-introducer = false
-compression = "metadata"
+# [[devices]]
+# id = "AAAAAAA-AAAAAAA-AAAAAAA-AAAAAAA-AAAAAAA-AAAAAAA-AAAAAAA-AAAAAAA"
+# name = "test-machine"
+# address = "dynamic"
+# introducer = false
+# compression = "metadata"
 
 [gui]
 enabled = true

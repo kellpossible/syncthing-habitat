@@ -1,12 +1,12 @@
 <configuration version="14">
     {{#each cfg.folders}}
     <folder id="{{id}}" 
-    label="{{label}}" 
-    path="{{../pkg.svc_data_path}}/{{path}}" 
-    type="{{type}}" 
-    rescanIntervalS="{{rescan_intervals}}" 
-    ignorePerms="{{ignore_perms}}" 
-    autoNormalize="{{auto_normalize}}">
+            label="{{label}}" 
+            path="{{../pkg.svc_data_path}}/{{path}}" 
+            type="{{type}}" 
+            rescanIntervalS="{{rescan_intervals}}" 
+            ignorePerms="{{ignore_perms}}" 
+            autoNormalize="{{auto_normalize}}">
         {{#if ../cfg.device.id}}<device id="{{../cfg.device.id}}"></device>{{/if}}
         <minDiskFreePct>1</minDiskFreePct>
         <versioning></versioning>
@@ -23,9 +23,16 @@
         <disableTempIndexes>false</disableTempIndexes>
     </folder>
     {{/each}}
-    <device {{#if cfg.device.id}}id="{{cfg.device.id}}"{{/if}} name="{{cfg.device.name}}" compression="{{cfg.device.compression}}" introducer="{{cfg.device.introducer}}">
-        <address>{{cfg.device.address}}</address>
+
+    {{#each cfg.devices}}
+    <device {{#if id}}id="{{id}}"{{/if}}
+            name="{{name}}"
+            compression="{{compression}}"
+            introducer="{{introducer}}">
+        <address>{{address}}</address>
     </device>
+    {{/each}}
+    
     <gui enabled="{{cfg.gui.enabled}}" tls="{{cfg.gui.tls}}">
         <address>{{cfg.gui.address}}</address>
         {{#if cfg.gui.apikey}}<apikey>{{cfg.gui.apikey}}</apikey>{{/if}}

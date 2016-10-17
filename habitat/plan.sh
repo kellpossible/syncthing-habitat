@@ -9,7 +9,7 @@ pkg_name=syncthing
 pkg_version=${SYNCTHING_PACKAGE_VERSION}
 pkg_maintainer="Luke Frisken <l.frisken@gmail.com>"
 pkg_license=()
-pkg_upstream_url=https://github.com/syncthing/syncthing
+pkg_upstream_url=https://github.com/kellpossible/syncthing-habitat
 pkg_source=https://github.com/syncthing/syncthing/releases/download/${SYNCTHING_VERSION}/${SYNCTHING_DOWNLOAD_FILE}
 pkg_deps=(
 )
@@ -24,10 +24,10 @@ pkg_expose=(
 )
 
 # temporary override to avoid having to download every time!
-# do_download() {
-# 	cp $PLAN_CONTEXT/../${SYNCTHING_DOWNLOAD_FILE} $HAB_CACHE_SRC_PATH/
-# 	return 0
-# }
+do_download() {
+	cp $PLAN_CONTEXT/../${SYNCTHING_DOWNLOAD_FILE} $HAB_CACHE_SRC_PATH/
+	return 0
+}
 
 do_verify() {
 	pushd $HAB_CACHE_SRC_PATH
